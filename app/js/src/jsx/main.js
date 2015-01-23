@@ -6,4 +6,4 @@ var Header = React.createClass({
 	}
 });
 
-React.render(<Header />, document.body);
+React.render(<Header />, document.body)

@@ -6,4 +6,4 @@ var Header = React.createClass({displayName: "Header",
 	}
 });
 
-React.render(React.createElement(Header, null), document.body);
+React.render(React.createElement(Header, null), document.body)
