@@ -3,7 +3,8 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify')
 	obfuscate = require('gulp-obfuscate'),
 	connect = require('gulp-connect'),
-	react = require('gulp-react');
+	react = require('gulp-react'),
+	stylus = require('gulp-stylus');
 
 gulp.task('connect', function() {
 	connect.server({
@@ -19,7 +20,7 @@ gulp.task('react', function(){
 		.pipe(connect.reload());
 })
 
-gulp.task('browserify', function(){
+gulp.task('browserify', ['react'], function(){
 	gulp.src('./app/js/src/main.js')
 		.pipe(browserify({
 			insertGlobals: true
@@ -30,14 +31,23 @@ gulp.task('browserify', function(){
 		.pipe(connect.reload());
 });
 
+
+gulp.task('style', function(){
+	gulp.src('./app/style/src/**/*.styl')
+		.pipe(stylus())
+		.pipe(gulp.dest('./app/style'))
+		.pipe(connect.reload());
+})
+
 gulp.task('html', function () {
 	gulp.src('./app/*.html')
 		.pipe(connect.reload());
 });
 
-gulp.task('watch', ['react', 'browserify', 'html'], function(){
-	gulp.watch('./app/js/src/jsx/**/*.js', ['react','browserify']);
+gulp.task('watch', ['style' ,'browserify', 'html'], function(){
+	gulp.watch('./app/js/src/jsx/**/*.js', ['browserify']);
 	gulp.watch('./app/*.html', ['html']);
+	gulp.watch('./app/style/src/**/*.styl', ['style']);
 });
 
 gulp.task('default', ['connect', 'watch']);
