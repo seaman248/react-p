@@ -12,9 +12,15 @@ gulp.task('connect', function() {
 	});
 });
 
+gulp.task('react', function(){
+	gulp.src('./app/js/src/jsx/**/*js')
+		.pipe(react())
+		.pipe(gulp.dest('./app/js/src'))
+		.pipe(connect.reload());
+})
+
 gulp.task('browserify', function(){
 	gulp.src('./app/js/src/main.js')
-		.pipe(react())
 		.pipe(browserify({
 			insertGlobals: true
 		}))
@@ -29,8 +35,8 @@ gulp.task('html', function () {
 		.pipe(connect.reload());
 });
 
-gulp.task('watch', function(){
-	gulp.watch('./app/js/src/main.js', ['browserify']);
+gulp.task('watch', ['react', 'browserify', 'html'], function(){
+	gulp.watch('./app/js/src/jsx/**/*.js', ['react','browserify']);
 	gulp.watch('./app/*.html', ['html']);
 });
 
