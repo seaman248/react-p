@@ -1,8 +1,12 @@
 body {
   font-family: Helvetica;
-}
-h1 {
-  font-size: 40px;
+  background-color: #ffbc4b;
   text-align: center;
-  margin-top: 300px;
+}
+#app {
+  margin: 0 auto;
+  margin-top: 200px;
+}
+.form-control {
+  float: left;
 }

@@ -2,8 +2,36 @@
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 var React = require('react');
 
+var RusInput = React.createClass({displayName: "RusInput",
+	render: function(){
+		return React.createElement("textarea", {rows: "5", type: "text", placeholder: "Russian", className: "form-control"})
+	}
+});
 
-}).call(this,require("+7ZJp0"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_b44dbc5b.js","/")
+var EngInput = React.createClass({displayName: "EngInput",
+	render: function(){
+		return React.createElement("textarea", {rows: "5", type: "text", placeholder: "English", className: "form-control"})
+	}
+});
+
+var TranslatorApp = React.createClass({displayName: "TranslatorApp",
+	render: function(){
+		var appStyle={
+			margin: '0 auto',
+			marginTop: '200px'
+
+		}
+		return (
+			React.createElement("div", {id: "app", style: appStyle}, 
+				React.createElement(RusInput, null), 
+				React.createElement(EngInput, null)
+			)
+			);
+	}
+});
+
+React.render(React.createElement(TranslatorApp, null), document.getElementById('appWindow'));
+}).call(this,require("+7ZJp0"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_dadecc9c.js","/")
 },{"+7ZJp0":5,"buffer":2,"react":151}],2:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /*!
