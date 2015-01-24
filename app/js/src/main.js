@@ -14,15 +14,17 @@ var EngInput = React.createClass({displayName: "EngInput",
 
 var TranslatorApp = React.createClass({displayName: "TranslatorApp",
 	render: function(){
-		var appStyle={
+		var TranslatorAppStyle={
 			margin: '0 auto',
 			marginTop: '200px'
 
 		}
 		return (
-			React.createElement("div", {id: "app", style: appStyle}, 
+			React.createElement("form", {id: "app", style: TranslatorAppStyle}, 
+				React.createElement("h1", null, "Translate App"), 
 				React.createElement(RusInput, null), 
-				React.createElement(EngInput, null)
+				React.createElement(EngInput, null), 
+				React.createElement("button", {type: "submit", className: "btn btn-default"}, "Translate")
 			)
 			);
 	}

@@ -1,12 +1,15 @@
 body {
   font-family: Helvetica;
-  background-color: #ffbc4b;
+  background-color: #f26500;
   text-align: center;
+}
+h1 {
+  color: #fff;
 }
 #app {
   margin: 0 auto;
   margin-top: 200px;
 }
 .form-control {
-  float: left;
+  margin: 20px 0;
 }
