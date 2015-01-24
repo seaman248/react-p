@@ -41,9 +41,9 @@ gulp.task('style', function(){
 })
 
 gulp.task('html', function () {
-	gulp.src('./app/view/*.jade')
-		.pipe(jade())
-		.pipe('./app')
+	gulp.src('./app/*.html')
+		// .pipe(jade())
+		// .pipe('./app')
 		.pipe(connect.reload());
 });
 
