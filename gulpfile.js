@@ -4,7 +4,8 @@ var gulp = require('gulp'),
 	obfuscate = require('gulp-obfuscate'),
 	connect = require('gulp-connect'),
 	react = require('gulp-react'),
-	stylus = require('gulp-stylus');
+	stylus = require('gulp-stylus'),
+	jade = require('gulp-jade');
 
 gulp.task('connect', function() {
 	connect.server({
@@ -40,7 +41,9 @@ gulp.task('style', function(){
 })
 
 gulp.task('html', function () {
-	gulp.src('./app/*.html')
+	gulp.src('./app/view/*.jade')
+		.pipe(jade())
+		.pipe('./app')
 		.pipe(connect.reload());
 });
 
