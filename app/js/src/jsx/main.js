@@ -1,6 +1,6 @@
 var React = require('react');
 var $ = require('jquery');
-
+var yaKey = 'XXX';
 var RusInput = React.createClass({
 	render: function(){
 		return <textarea 
@@ -30,9 +30,28 @@ var TranslatorApp = React.createClass({
 	},
 	submitHandler: function(e){
 		e.preventDefault();
-		console.log(e.target.tagName);
 		var ruIn = this.refs.ruInput.getDOMNode().value.trim();
-		if (ruIn) this.setState({enText: ruIn});
+		if (ruIn) {
+			var yaUrl = 'https://translate.yandex.net/api/v1.5/tr.json/translate?'
+				+ 'key='+yaKey
+				+ '&text='+ ruIn
+				+ '&lang=ru-en'
+			$.ajax({
+				url: yaUrl,
+				dataType: 'json',
+				success: function(data){
+					this.setState({enText: data.text.toString()})
+				}.bind(this),
+				error: function(xhr, status, err){
+					console.error(status, err.toString());
+				}
+		});
+		} else {
+			this.setState({enText: ''});
+		}
+	},
+	changeHandler: function(){
+		console.log(this.refs.ruInput.getDOMNode().value.trim());
 	},
 	render: function(){
 		var TranslatorAppStyle={
@@ -43,7 +62,7 @@ var TranslatorApp = React.createClass({
 		return (
 			<form id='app' style={TranslatorAppStyle} onSubmit={this.submitHandler} >
 				<h1>Translate App</h1>
-				<RusInput ref='ruInput' />
+				<RusInput ref='ruInput' onChange={this.changeHandler} />
 				<EngInput text={this.state.enText} ref='enInput' />
 				<button type='submit' className='btn btn-default' >Translate</button>
 			</form>
