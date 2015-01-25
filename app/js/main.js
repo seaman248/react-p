@@ -4,17 +4,36 @@ var React = require('react');
 
 var RusInput = React.createClass({displayName: "RusInput",
 	render: function(){
-		return React.createElement("textarea", {rows: "5", type: "text", placeholder: "Russian", className: "form-control"})
+		return React.createElement("textarea", {
+			rows: "5", 
+			type: "text", 
+			value: this.props.text, 
+			placeholder: "Russian", 
+			className: "form-control"})
 	}
 });
 
 var EngInput = React.createClass({displayName: "EngInput",
 	render: function(){
-		return React.createElement("textarea", {rows: "5", type: "text", placeholder: "English", className: "form-control"})
+		return React.createElement("textarea", {
+			rows: "5", 
+			type: "text", 
+			placeholder: "English", 
+			className: "form-control"})
 	}
 });
 
 var TranslatorApp = React.createClass({displayName: "TranslatorApp",
+	getInitialState: function(){
+		return {
+			enText: ''
+		}
+	},
+	submitHandler: function(e){
+		e.preventDefault();
+		console.log(this.refs.ruInput.getDOMNode().value);
+		// this.setState({enText: ruInput});
+	},
 	render: function(){
 		var TranslatorAppStyle={
 			margin: '0 auto',
@@ -22,10 +41,10 @@ var TranslatorApp = React.createClass({displayName: "TranslatorApp",
 
 		}
 		return (
-			React.createElement("form", {id: "app", style: TranslatorAppStyle}, 
+			React.createElement("form", {id: "app", style: TranslatorAppStyle, onSubmit: this.submitHandler}, 
 				React.createElement("h1", null, "Translate App"), 
-				React.createElement(RusInput, null), 
-				React.createElement(EngInput, null), 
+				React.createElement(RusInput, {ref: "ruInput"}), 
+				React.createElement(EngInput, {text: this.state.enText, ref: "enInput"}), 
 				React.createElement("button", {type: "submit", className: "btn btn-default"}, "Translate")
 			)
 			);
@@ -33,7 +52,7 @@ var TranslatorApp = React.createClass({displayName: "TranslatorApp",
 });
 
 React.render(React.createElement(TranslatorApp, null), document.getElementById('appWindow'));
-}).call(this,require("+7ZJp0"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_d9dc6548.js","/")
+}).call(this,require("+7ZJp0"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer,arguments[3],arguments[4],arguments[5],arguments[6],"/fake_b47f15c7.js","/")
 },{"+7ZJp0":5,"buffer":2,"react":151}],2:[function(require,module,exports){
 (function (process,global,Buffer,__argument0,__argument1,__argument2,__argument3,__filename,__dirname){
 /*!
