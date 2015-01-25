@@ -1,11 +1,11 @@
 var React = require('react');
+var $ = require('jquery');
 
 var RusInput = React.createClass({
 	render: function(){
 		return <textarea 
 			rows='5' 
 			type='text' 
-			value={this.props.text}
 			placeholder='Russian' 
 			className='form-control' />
 	}
@@ -16,6 +16,7 @@ var EngInput = React.createClass({
 		return <textarea 
 			rows='5' 
 			type='text' 
+			value={this.props.text} 
 			placeholder='English'
 			className='form-control' />
 	}
@@ -29,8 +30,9 @@ var TranslatorApp = React.createClass({
 	},
 	submitHandler: function(e){
 		e.preventDefault();
-		console.log(this.refs.ruInput.getDOMNode().value);
-		// this.setState({enText: ruInput});
+		console.log(e.target.tagName);
+		var ruIn = this.refs.ruInput.getDOMNode().value.trim();
+		if (ruIn) this.setState({enText: ruIn});
 	},
 	render: function(){
 		var TranslatorAppStyle={

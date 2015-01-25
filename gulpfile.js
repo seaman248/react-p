@@ -5,7 +5,8 @@ var gulp = require('gulp'),
 	connect = require('gulp-connect'),
 	react = require('gulp-react'),
 	stylus = require('gulp-stylus'),
-	jade = require('gulp-jade');
+	jade = require('gulp-jade'),
+	clean = require('gulp-clean');
 
 gulp.task('connect', function() {
 	connect.server({
@@ -26,6 +27,7 @@ gulp.task('browserify', ['react'], function(){
 		.pipe(browserify({
 			insertGlobals: true
 		}))
+		.pipe(clean())
 		// .pipe(uglify())
 		// .pipe(obfuscate())
 		.pipe(gulp.dest('./app/js'))
